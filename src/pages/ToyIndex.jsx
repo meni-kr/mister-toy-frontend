@@ -4,7 +4,8 @@ import { useEffect } from 'react'
 
 
 import { ToyList } from '../cmps/ToyList.jsx'
-import { loadToys } from '../store/actions/toy.actions.js'
+import { loadToys, removeToy } from '../store/actions/toy.actions.js'
+import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 
 
 export function ToyIndex(){
@@ -18,6 +19,18 @@ export function ToyIndex(){
                 showErrorMsg('Cannot load toys!')
             })
     }, [])
+
+    function onRemoveToy(toyId) {
+        removeToy(toyId)
+            .then(() => {
+                showSuccessMsg('Toy removed')
+            })
+            .catch(err => {
+                showErrorMsg('Cannot remove toy')
+            })
+    }
+
+
 console.log(toys);
 if(!toys) return <h1>Loading....</h1>
     return (
@@ -26,6 +39,7 @@ if(!toys) return <h1>Loading....</h1>
             <main>
                 <ToyList
                 toys={toys}
+                onRemoveToy={onRemoveToy}
                 />
             </main>
         </section>
