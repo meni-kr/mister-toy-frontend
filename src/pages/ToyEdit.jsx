@@ -14,7 +14,6 @@ export function ToyEdit() {
     const navigate = useNavigate()
     const [toyToEdit, setToyToEdit] = useState(toyService.getEmptyToy())
     const { toyId } = useParams()
-    console.log(toyId);
 
     useEffect(() => {
         if (toyId) loadToy()
@@ -32,12 +31,12 @@ export function ToyEdit() {
     function handleChange({ target }) {
         let { value, type, name: field } = target
         value = type === 'number' ? +value : value
-        setToyToEdit((prevCar) => ({ ...prevCar, [field]: value }))
+        setToyToEdit((prevToy) => ({ ...prevToy, [field]: value }))
     }
 
     function onSaveToy(ev) {
         ev.preventDefault()
-        if (!toyToEdit.price) toyToEdit.price = 1000
+        if (!toyToEdit.price) toyToEdit.price = 60
         saveToy(toyToEdit)
             .then(() => {
                 showSuccessMsg('Toy Saved!')
@@ -54,7 +53,7 @@ export function ToyEdit() {
             <h2>{toyToEdit._id ? 'Edit' : 'Add'} Toy</h2>
 
             <form onSubmit={onSaveToy} >
-                <label htmlFor="name">Vendor : </label>
+                <label htmlFor="name">name : </label>
                 <input type="text"
                     name="name"
                     id="name"

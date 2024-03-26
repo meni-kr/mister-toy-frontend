@@ -36,6 +36,7 @@ if(!toys) return <h1>Loading....</h1>
     return (
         <section className='toy-index-container'>
             <h1>All the toys that you whant in one place</h1>
+            <Link to='/toy/edit'> <button>Add new toy</button></Link>
             <main>
                 <ToyList
                 toys={toys}
