@@ -11,14 +11,28 @@ export const toyService = {
     remove,
     save,
     getEmptyToy,
+    getDefaultFilter,
     
 }
 
 _createToys()
 
-function query() {
+function query(filterBy = {}) {
     return asyncStorageService.query(STORAGE_KEY)
-        .then(toys => toys)
+        .then(toys => {
+            if (!filterBy.name) filterBy.name = ''
+            if (!filterBy.maxPrice) filterBy.maxPrice = Infinity
+            if(!filterBy.inStock) filterBy.inStock = 'all'
+            else if(filterBy.inStock === 'inStock') filterBy.inStock = false
+            else if(filterBy.inStock === 'outStock')filterBy.inStock = true
+            else if(filterBy.inStock === 'all')filterBy.inStock = null
+            const regExp = new RegExp(filterBy.name, 'i')
+            return toys.filter(toy => regExp.test(toy.name) &&
+             toy.price <= filterBy.maxPrice &&
+             toy.inStock !== filterBy.inStock
+                
+            )
+        })
 }
 
 function getById(toyId) {
@@ -38,7 +52,9 @@ function save(toy) {
     }
 }
 
-
+function getDefaultFilter() {
+    return { name: '', maxPrice: '',inStock:'all' }
+}
 
 
 function getEmptyToy() {
