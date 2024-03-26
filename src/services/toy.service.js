@@ -17,7 +17,7 @@ export const toyService = {
 
 _createToys()
 
-function query(filterBy = {}) {
+function query(filterBy = {},sortBy={}) {
     return asyncStorageService.query(STORAGE_KEY)
         .then(toys => {
             if (!filterBy.name) filterBy.name = ''
@@ -26,6 +26,24 @@ function query(filterBy = {}) {
             else if(filterBy.inStock === 'inStock') filterBy.inStock = false
             else if(filterBy.inStock === 'outStock')filterBy.inStock = true
             else if(filterBy.inStock === 'all')filterBy.inStock = null
+
+            if (sortBy.type === 'createAt') {
+                if (sortBy.desc) sortBy.desc = 1
+                if (!sortBy.desc) sortBy.desc = -1
+                toys.sort((t1, t2) => (sortBy.desc) * (t2.createAt - t1.createAt))
+            }
+            if (sortBy.type === 'price') {
+                if (sortBy.desc) sortBy.desc = 1
+                if (!sortBy.desc) sortBy.desc = -1
+                toys.sort((t1, t2) => (sortBy.desc) * (t2.price - t1.price))
+            }
+            if (sortBy.type === 'name') {
+                var num
+                if (sortBy.desc) num = 1
+                if (!sortBy.desc) num = -1
+                toys.sort((t1, t2) => (num) * (t2.name.localeCompare(t1.name)))
+            }
+
             const regExp = new RegExp(filterBy.name, 'i')
             return toys.filter(toy => regExp.test(toy.name) &&
              toy.price <= filterBy.maxPrice &&
@@ -86,7 +104,7 @@ function _createToy(name, price) {
     toy.name = name
     toy.price = +price
     toy.labels.push(_getRandomLabel())
-    toy.creatAt = Date.now()
+    toy.createAt = Date.now()
     toy.desc = utilService.makeLorem(10)
     toy.inStock= (Math.random()>0.5)? true : false
     return toy
