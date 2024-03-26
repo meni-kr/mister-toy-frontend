@@ -7,7 +7,10 @@ const STORAGE_KEY = 'toyDB'
 
 export const toyService = {
     query,
+    getById,
+    remove,
     getEmptyToy,
+    
 }
 
 _createToys()
@@ -15,6 +18,15 @@ _createToys()
 function query() {
     return asyncStorageService.query(STORAGE_KEY)
         .then(toys => toys)
+}
+
+function getById(toyId) {
+    return asyncStorageService.get(STORAGE_KEY, toyId)
+}
+
+function remove(toyId) {
+    // return Promise.reject('Not now!')
+    return asyncStorageService.remove(STORAGE_KEY, toyId)
 }
 
 
