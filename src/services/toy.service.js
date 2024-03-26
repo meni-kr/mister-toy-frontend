@@ -9,6 +9,7 @@ export const toyService = {
     query,
     getById,
     remove,
+    save,
     getEmptyToy,
     
 }
@@ -27,6 +28,14 @@ function getById(toyId) {
 function remove(toyId) {
     // return Promise.reject('Not now!')
     return asyncStorageService.remove(STORAGE_KEY, toyId)
+}
+
+function save(toy) {
+    if (toy._id) {
+        return asyncStorageService.put(STORAGE_KEY, toy)
+    } else {  
+        return asyncStorageService.post(STORAGE_KEY, toy)
+    }
 }
 
 
