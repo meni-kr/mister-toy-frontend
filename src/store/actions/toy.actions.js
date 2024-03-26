@@ -3,7 +3,7 @@ import { ADD_TOY, REMOVE_TOY, SET_TOYS, UPDATE_TOY } from "../reducers/toy.reduc
 import { store } from "../store.js"
 
 
-export function loadCars() {
+export function loadToys() {
     return toyService.query()
         .then(toys => {
             store.dispatch({ type: SET_TOYS, toys })

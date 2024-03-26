@@ -1,17 +1,24 @@
 .app-header{
-    background-color: rgb(198, 215, 224);
+    background-color: var(--clr1);
+    margin: 20px 20px 0 20px;
+    padding-inline:10px ;
+    border-radius: 30px;
+
 }
 
 .header-container{
     display: flex;
+
 }
 
 .logo{
-    margin-left: 10px;
+    /* margin-left: 20px; */
+    
     flex-grow: 1;
 }
 
 .app-nav{
     align-self: center;
     padding: 10px;
+    
 }

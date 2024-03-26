@@ -4,8 +4,9 @@
     align-items:center ;
     justify-content: space-around;
     margin-top: 100px;
-
+margin-inline:20px ;
     background-color: var(--gray1);
+    border-radius: 25px;
 }
 
 /* .app-hero-container img{

@@ -1,0 +1,9 @@
+
+
+.toy-list{
+    background-color: var(--gray1);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 10px;
+}
