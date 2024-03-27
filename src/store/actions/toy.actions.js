@@ -3,9 +3,11 @@ import { ADD_TOY, REMOVE_TOY, SET_FILTER_BY, SET_TOYS, UPDATE_TOY,SORT_BY } from
 import { store } from "../store.js"
 
 
-export function loadToys() {
-    const filterBy = store.getState().toyModule.filterBy
-    const sortBy = store.getState().toyModule.sortBy
+export function loadToys(filterBy,sortBy) {
+    // console.log('filterBy:', filterBy)
+    // console.log('sortBy:', sortBy)
+    // const filterBy = store.getState().toyModule.filterBy
+    // const sortBy = store.getState().toyModule.sortBy
     return toyService.query(filterBy,sortBy)
         .then(toys => {
             store.dispatch({ type: SET_TOYS, toys })
