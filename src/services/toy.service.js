@@ -21,7 +21,7 @@ function query(filterBy = {},sortBy={}) {
     return asyncStorageService.query(STORAGE_KEY)
         .then(toys => {
             if (!filterBy.name) filterBy.name = ''
-            if (!filterBy.maxPrice) filterBy.maxPrice = Infinity
+            if (!filterBy.maxPrice) filterBy.maxPrice = 9999999
             if(!filterBy.inStock) filterBy.inStock = 'all'
             else if(filterBy.inStock === 'inStock') filterBy.inStock = false
             else if(filterBy.inStock === 'outStock')filterBy.inStock = true
