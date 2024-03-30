@@ -30,6 +30,7 @@ export function removeToy(toyId) {
 }
 
 export function saveToy(toy) {
+    console.log(toy);
     const type = toy._id ? UPDATE_TOY : ADD_TOY
     return toyService.save(toy)
         .then(savedToy => {

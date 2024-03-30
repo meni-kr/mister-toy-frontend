@@ -7,12 +7,14 @@ import {
 // const { createStore, compose, combineReducers } = Redux
 
 import { toyReducer } from "./reducers/toy.reducer.js"
+import { userReducer } from "./reducers/user.reducer.js"
 
 
 
 
 const rootReducer = combineReducers({
     toyModule: toyReducer,
+    userModule: userReducer,
 
 })
 

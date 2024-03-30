@@ -11,6 +11,7 @@ import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 
 export function ToyIndex(){
 
+    const user = useSelector(storeState => storeState.userModule.loggedInUser)
     const toys = useSelector(storeState => storeState.toyModule.toys)
     const filterBy = useSelector(storeState => storeState.toyModule.filterBy)
     const sortBy = useSelector(storeState => storeState.toyModule.sortBy)
@@ -44,12 +45,15 @@ export function ToyIndex(){
 
 
 
-// console.log(toys);
+console.log(user);
 if(!toys) return <h1>Loading....</h1>
     return (
         <section className='toy-index-container'>
             <h1>All the toys that you whant in one place</h1>
-            <Link to='/toy/edit'> <button>Add new toy</button></Link>
+            {
+              user && user.isAdmin && <Link to='/toy/edit'> <button>Add new toy</button></Link>
+            }
+            
             <ToyFilter 
             filterBy={filterBy} onSetFilter={onSetFilter}
             onSetSort={onSetSort} sortBy={sortBy}
@@ -58,6 +62,7 @@ if(!toys) return <h1>Loading....</h1>
                 <ToyList
                 toys={toys}
                 onRemoveToy={onRemoveToy}
+                user={user}
                 />
             </main>
         </section>
