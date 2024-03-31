@@ -33,6 +33,16 @@
       margin: 0;
       list-style-type: none;
   }
+
+  .btn{
+    background-color: $clr2;
+    border: 0.8px solid $gray2;
+    border-radius: 10px;
+    &:hover{
+        cursor: pointer;
+        background-color: $clr2bg-light;
+    }
+  }
   
   /* font awsome */
   

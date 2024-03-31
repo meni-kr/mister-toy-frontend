@@ -42,12 +42,14 @@ if(!toys) return <h1>Loading....</h1>
         <section className='toy-index-container'>
             <h1>All the toys that you whant in one place</h1>
             {
-              user && user.isAdmin && <Link to='/toy/edit'> <button>Add new toy</button></Link>
+              user && user.isAdmin && <Link to='/toy/edit'> <button className='btn'>Add new toy</button></Link>
             }
-            
-            <ToyFilter 
+            <section className='toy-filter'>
+             <ToyFilter 
             filterBy={filterBy} onSetFilter={onSetFilter}
-            />
+            />   
+            </section>
+            
             <main>
                 <ToyList
                 toys={toys}

@@ -11,13 +11,13 @@ export function ToyList({ toys, onRemoveToy, user }) {
 
                     {
                         user && user.isAdmin && <div>
-                            <button onClick={() => onRemoveToy(toy._id)}>x</button>
+                            <button className="btn" onClick={() => onRemoveToy(toy._id)}>x</button>
                             <Link to={`/toy/edit/${toy._id}`}> Edit </Link>
                         </div>
                     }
 
-                    <Link to={`/toy/${toy._id}`}><button>Details</button></Link>
-                    <button className="buy">
+                    <Link to={`/toy/${toy._id}`}><button className="btn">Details</button></Link>
+                    <button className="buy btn">
                         Add to Cart
                     </button>
                 </li>)}

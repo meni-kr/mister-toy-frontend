@@ -1,0 +1,21 @@
+
+
+.toy-list{
+    background-color: $gray1;
+    display: flex;
+    flex-wrap: wrap;
+    
+    justify-content: space-between;
+    // gap: 10px;
+
+    .toy-preview{
+        background-color: $gray1-2;
+        padding: 0.625em;
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 0.3125em;
+        align-items: center;
+        border: 0.5px solid rgb(201, 196, 196);
+    }
+}

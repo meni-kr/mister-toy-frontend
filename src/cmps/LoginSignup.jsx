@@ -38,7 +38,7 @@ export function LoginSignup({ onSetUser }) {
       <LoginForm onLogin={onLogin} isSignup={isSignup} />
       <div className="btns">
         <a href="#" onClick={() => setIsSignUp(!isSignup)}>
-          {isSignup ? 'Already a member? Login' : 'New user? Signup here'}
+          {isSignup ? 'Already a member? Login' : 'New user? Signup'}
         </a>
       </div>
     </div>

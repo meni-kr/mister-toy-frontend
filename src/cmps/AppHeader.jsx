@@ -25,26 +25,27 @@ export function AppHeader(){
     <header className="app-header">
     <section className="header-container">
         <h1 className="logo">Toy logo</h1>
+        
+        {user ? (
+          <section className="login-container">
+            <span to={`/user/${user._id}`}>
+              Hello {user.fullname}
+            </span>
+            {/* <progress value={howMuchDone()} max={todos.length}></progress> */}
+            <button className="btn" onClick={onLogout}>Logout</button>
+          </section>
+        ) : (
+          <section className="login-container">
+
+            <LoginSignup />
+          </section>
+        )}
         <nav className="app-nav">
             <NavLink to="/" >Home</NavLink>
             {/* <NavLink to="/about" >About</NavLink> */}
             <NavLink to="/toy" >toys</NavLink>
             {/* <a onClick={onToggleCart} href="#">🛒 Cart</a> */}
         </nav>
-        {user ? (
-          <section>
-            <span to={`/user/${user._id}`}>
-              Hello {user.fullname}
-            </span>
-            {/* <progress value={howMuchDone()} max={todos.length}></progress> */}
-            <button onClick={onLogout}>Logout</button>
-          </section>
-        ) : (
-          <section>
-
-            <LoginSignup />
-          </section>
-        )}
     </section>
 </header>
         
