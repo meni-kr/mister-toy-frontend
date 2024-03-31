@@ -4,7 +4,7 @@ import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 
-export function ToySort({handleChange, sortBy}) {
+export function SortBy({handleChange, sortBy}) {
   return (
     <FormControl sx={{m: 1, minWidth: 120}} size="small">
       <InputLabel id="demo-select-small-label">Sort By</InputLabel>

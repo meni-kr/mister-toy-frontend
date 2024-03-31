@@ -62,5 +62,5 @@ function getEmptyToy() {
 }
 
 function getDefaultFilter() {
-    return { name: '', inStock: 'all', byLable: [], sortBy: '' , maxPrice: ''}
+    return { name: '', inStock: '', byLabel: [], sortBy: ''}
 }

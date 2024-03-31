@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 
 import { ToyList } from '../cmps/ToyList.jsx'
 import { ToyFilter } from '../cmps/ToyFilter.jsx'
-import { loadToys, removeToy, setFilterBy, setSortBy } from '../store/actions/toy.actions.js'
+import { loadToys, removeToy, setFilterBy } from '../store/actions/toy.actions.js'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 
 
@@ -14,38 +14,29 @@ export function ToyIndex(){
     const user = useSelector(storeState => storeState.userModule.loggedInUser)
     const toys = useSelector(storeState => storeState.toyModule.toys)
     const filterBy = useSelector(storeState => storeState.toyModule.filterBy)
-    const sortBy = useSelector(storeState => storeState.toyModule.sortBy)
-
-
 
     useEffect(() => {
-        loadToys(filterBy,sortBy)
+        loadToys()
             .catch(err => {
                 showErrorMsg('Cannot load toys!')
             })
-    }, [filterBy,sortBy])
+    }, [filterBy])
 
     function onSetFilter(filterBy) {
+        console.log('filterBy:', filterBy)
         setFilterBy(filterBy)
     }
 
-    function onSetSort(sortBy) {
-        setSortBy(sortBy)
+    async function onRemoveToy(toyId) {
+        try {
+            await removeToy(toyId)
+            showSuccessMsg('Toy removed')
+          } catch (err) {
+            console.log('Cannot remove toy', err)
+            showErrorMsg('Cannot remove toy')
+          }
     }
 
-    function onRemoveToy(toyId) {
-        removeToy(toyId)
-            .then(() => {
-                showSuccessMsg('Toy removed')
-            })
-            .catch(err => {
-                showErrorMsg('Cannot remove toy')
-            })
-    }
-
-
-
-console.log(user);
 if(!toys) return <h1>Loading....</h1>
     return (
         <section className='toy-index-container'>
@@ -56,7 +47,6 @@ if(!toys) return <h1>Loading....</h1>
             
             <ToyFilter 
             filterBy={filterBy} onSetFilter={onSetFilter}
-            onSetSort={onSetSort} sortBy={sortBy}
             />
             <main>
                 <ToyList

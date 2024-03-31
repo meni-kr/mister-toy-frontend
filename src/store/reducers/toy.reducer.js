@@ -12,7 +12,7 @@ export const SET_LABLES = 'SET_LABLES'
 const initialState = {
     toys: [],
     filterBy: toyService.getDefaultFilter(),
-    lables: ["On wheels", "Box game", "Art", "Baby", "Doll", "Puzzle", "Outdoor", "Battery Powered"]
+    labels: ["On wheels", "Box game", "Art", "Baby", "Doll", "Puzzle", "Outdoor", "Battery Powered"]
 }
 
 export function toyReducer(state = initialState, action = {}) {
