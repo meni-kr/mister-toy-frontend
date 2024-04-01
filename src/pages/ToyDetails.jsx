@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { toyService } from '../services/toy.service.js'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 import { useSelector } from 'react-redux'
+import { Reviews } from '../cmps/Reviews.jsx'
 
 function getEmptyMsg() {
     return {
@@ -83,7 +84,7 @@ export function ToyDetails() {
                         <li key={msg.id}>
                             By: {msg.by.fullname} - {msg.txt}
                             {
-                             user && msg.by._id === user._id && <button type="button" onClick={() => onRemoveMsg(msg.id)}>
+                             (user && msg.by._id === user._id) && <button type="button" onClick={() => onRemoveMsg(msg.id)}>
                                 X
                             </button>
                             }
@@ -91,7 +92,7 @@ export function ToyDetails() {
                         </li>
                     ))}
             </ul>
-            <form className="login-form" onSubmit={onSaveMsg}>
+            <form className="msg-form" onSubmit={onSaveMsg}>
                 <input
                     type="text"
                     name="txt"
@@ -103,6 +104,8 @@ export function ToyDetails() {
                 />
                 <button>Send</button>
             </form>
+
+            <Reviews toy={toy}/>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi voluptas
                 cumque tempore, aperiam sed dolorum rem!

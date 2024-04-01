@@ -10,7 +10,6 @@ export async function loadUsers() {
         console.log('UserActions: err in loadUsers', err)
     }
 }
-
 export async function removeUser(userId) {
     try {
         await userService.remove(userId)
@@ -19,8 +18,8 @@ export async function removeUser(userId) {
         console.log('UserActions: err in removeUser', err)
     }
 }
-
 export async function login(credentials) {
+    console.log('hay');
     try {
         const user = await userService.login(credentials)
         store.dispatch({ type: SET_USER, user })
@@ -30,7 +29,6 @@ export async function login(credentials) {
         throw err
     }
 }
-
 export async function signup(credentials) {
     try {
         const user = await userService.signup(credentials)
@@ -41,8 +39,7 @@ export async function signup(credentials) {
         throw err
     }
 }
-
-export async function logout(credentials) {
+export async function logout() {
     try {
         await userService.logout()
         store.dispatch({ type: SET_USER, user: null })
