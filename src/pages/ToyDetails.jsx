@@ -75,42 +75,49 @@ export function ToyDetails() {
     if (!toy) return <div>Loading...</div>
     return (
         <section className="toy-details">
-            <h1>Toy vendor : {toy.name}</h1>
-            <h5>Price: ${toy.price}</h5>
-            <img src={toy.img} alt="" />
-            <ul>
-                {toy.msgs &&
-                    toy.msgs.map((msg) => (
-                        <li key={msg.id}>
-                            By: {msg.by.fullname} - {msg.txt}
-                            {
-                             (user && msg.by._id === user._id) && <button type="button" onClick={() => onRemoveMsg(msg.id)}>
-                                X
-                            </button>
-                            }
-                            
-                        </li>
-                    ))}
-            </ul>
-            <form className="msg-form" onSubmit={onSaveMsg}>
-                <input
-                    type="text"
-                    name="txt"
-                    value={txt}
-                    placeholder="Username"
-                    onChange={handleMsgChange}
-                    required
-                    autoFocus
-                />
-                <button>Send</button>
-            </form>
 
-            <Reviews toy={toy}/>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi voluptas
-                cumque tempore, aperiam sed dolorum rem!
-            </p>
-            <Link className='back-btn' to={`/toy`}>Back</Link>
+            <img src={toy.img} alt="" />
+
+            <section className='main-details'>
+                <div>
+                    <h1>Toy name : {toy.name}</h1>
+                    <h5>Price: ${toy.price}</h5>
+                </div>
+                <section className='msgs'>
+                    <ul className='msg-list clean-list'>
+                        {toy.msgs &&
+                            toy.msgs.map((msg) => (
+                                <li key={msg.id} className='msg-container'>
+                                    By: {msg.by.fullname} - {msg.txt}
+                                    {
+                                        (user && msg.by._id === user._id) && <button className='btn' type="button" onClick={() => onRemoveMsg(msg.id)}>
+                                            X
+                                        </button>
+                                    }
+
+                                </li>
+                            ))}
+                    </ul>
+                    <form className="msg-form" onSubmit={onSaveMsg}>
+                        <input
+                            type="text"
+                            name="txt"
+                            value={txt}
+                            placeholder="Username"
+                            onChange={handleMsgChange}
+                            required
+                            autoFocus
+                        />
+                        <button className='btn'>Send</button>
+                    </form>
+                </section>
+
+                <Reviews toy={toy} />
+
+                <Link className='back-btn' to={`/toy`}>Back</Link>
+
+            </section>
+
         </section>
     )
 }

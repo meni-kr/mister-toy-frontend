@@ -56,25 +56,28 @@ export function Reviews({toy}) {
     
     return (
         <div className="review-index">
-          <h1>Reviews and Gossip</h1>
-          {reviews && <ul className="review-list">
+          <h1>Reviews:</h1>
+          {reviews && <ul className="review-container clean-list">
             {reviews.map(review => (
               <li key={review._id}>
                 {canRemove(review) &&
-                  <button onClick={() => onRemove(review._id)}>X</button>}
-                <p>
+                  <button className="btn" onClick={() => onRemove(review._id)}>X</button>}
+                  <section>
+                    <p>
                   About:
                   <Link to={`/user/${review.aboutUser._id}`}>
                     {review.aboutUser.fullname}
                   </Link>
                 </p>
-                <h3><pre>{review.txt}</pre></h3>
                 <p>
                   By:
                   <Link to={`/user/${review.byUser._id}`}>
                     {review.byUser.fullname}
                   </Link>
                 </p>
+                  </section>
+                
+                <h3><pre>{review.txt}</pre></h3>
               </li>
             ))}
           </ul>}
@@ -97,9 +100,9 @@ export function Reviews({toy}) {
                 onChange={handleChange}
                 value={reviewToEdit.txt}
               ></textarea>
-              <button>Add</button>
+              <button className="btn">Add</button>
             </form>}
-          <hr />
+          
         </div>
       )
 }

@@ -1,0 +1,50 @@
+.toy-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 10px;
+    justify-items: center;
+
+    img {
+        max-height: 80vh;
+    }
+
+    .main-details {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .msgs {
+            display: flex;
+            flex-direction: column;
+            margin-block: 10px;
+            align-items: center;
+        }
+
+        .msg-list {
+            .msg-container {
+                margin-bottom: 5px;
+            }
+        }
+
+        .review-index {
+
+            .review-container {
+                li{
+
+                    display: flex;
+                    // background-color: azure;
+                    gap: 10px;
+
+                    .btn{
+                        align-self: center;
+                    }
+                    p{
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+
+
+}

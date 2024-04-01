@@ -34,7 +34,7 @@ function getLoggedinUser() {
 function _setLoggedinUser(user) {
     // const userToSave = { _id: user._id, fullname: user.fullname, isAdmin: user.isAdmin, imgUrl: user.imgUrl, }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
-    console.log('useraa:', user)
+    
     return user
 }
 async function getById(userId) {
